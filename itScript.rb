@@ -4,14 +4,14 @@ require 'open-uri'
 require 'uri'
 
 gen = "http://"
-startUrl = "http://it-ebooks.info/book/1/"
+startUrl = "http://it-ebooks.info/book/"
 
 maxDownPerTime = 5
 maxDownPerTime = ARGV[0] if ARGV.size > 0
 
 # debería implemetar el bajar por tags: "it-books.info/tag/programming"
-
-page = Nokogiri::XML(open(startUrl))
+i = 1
+page = Nokogiri::XML(open(startUrl+i.to_s))
 titleDown = page.xpath("//head/title").to_s
 while (titleDown != "<title>IT eBooks - Free Download - Big Library</title>") do
 	titleDown.slice! "<title>"
@@ -24,6 +24,10 @@ while (titleDown != "<title>IT eBooks - Free Download - Big Library</title>") do
 	toDownload = gen + toDownload
 	#Acá tengo el link de descarga, con referer y todo.
 	exec("wget --referer=#{startUrl} #{toDownload} --output-document=#{titleDown+".pdf"}")
+	
+	i = i + 1
+	page = Nokogiri::XML(open(startUrl+i.to_s))
+	titleDown = page.xpath("//head/title").to_s
 end
 
 
