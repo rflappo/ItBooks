@@ -35,4 +35,4 @@ while (i < 5 and titleDown != "<title>IT eBooks - Free Download - Big Library</t
 	titleDown = page.xpath("//head/title").to_s
 end
 
-listOfPaths.each {|commandLine| exec commandLine}
+listOfPaths.each{|el| %x(#{el})} #Ejecuta, uno a uno, los wgets se ejecuten.
