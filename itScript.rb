@@ -16,13 +16,14 @@ i = 1
 page = Nokogiri::XML(open(startUrl+i.to_s))
 titleDown = page.xpath("//head/title").to_s
 
-
+# Quitar "i < 5 and", solo está for testing!
 while (i < 5 and titleDown != "<title>IT eBooks - Free Download - Big Library</title>") do
+	#Obtengamos el título o nombre del archivo.
 	titleDown.slice! "<title>"
 	titleDown.slice! "</title>"
 	titleDown.slice! " - Free Download eBook - pdf"
 	titleDown.gsub!(' ', '.')
-	#Tenemos el título o nombre del archivo.
+	
 	toDownload =  /filepi\.com\/i\/.+http/.match(page.xpath("//td/a/@href").to_s).to_s
 	toDownload.slice! "http"
 	toDownload = gen + toDownload
