@@ -1,7 +1,6 @@
 require 'rubygems' # Ruby -v < 2.0.0
 require 'nokogiri'
 require 'open-uri'
-require 'uri'
 
 gen = "http://"
 startUrl = "http://it-ebooks.info/book/"
