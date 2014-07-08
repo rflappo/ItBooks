@@ -3,8 +3,6 @@ require 'nokogiri'
 require 'open-uri'
 
 startUrl = "http://nptel.ac.in/courses/Webcourse-contents/IIT%20Kharagpur/Soft%20Engg/"
-%x(mkdir IngDeSoft)
-%x(cd IngDeSoft)
 listOfPaths = Array.new
 puts "Gathering data..."
 i = 1
