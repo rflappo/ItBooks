@@ -16,7 +16,7 @@ page = Nokogiri::XML(open(startUrl+i.to_s))
 titleDown = page.xpath("//head/title").to_s
 
 # Quitar "i < 5 and", solo está for testing!
-while (i < 5 and titleDown != "<title>IT eBooks - Free Download - Big Library</title>") do
+while (titleDown != "<title>IT eBooks - Free Download - Big Library</title>") do
 	#Obtengamos el título o nombre del archivo.
 	titleDown.slice! "<title>"
 	titleDown.slice! "</title>"
