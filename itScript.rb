@@ -21,7 +21,8 @@ while (titleDown != "<title>IT eBooks - Free Download - Big Library</title>") do
 	titleDown.slice! "<title>"
 	titleDown.slice! "</title>"
 	titleDown.slice! " - Free Download eBook - pdf"
-	titleDown.gsub!(' ', '.')
+	titleDown.gsub!(' ', '_')
+	titleDown.downcase!
 	
 	toDownload =  /filepi\.com\/i\/.+http/.match(page.xpath("//td/a/@href").to_s).to_s
 	toDownload.slice! "http"
